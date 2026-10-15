@@ -1,0 +1,7 @@
+For the pointers exercise, y and &y printed the same because:
+
+- y points to first element of the array. Its type is double*
+
+- &y gets the address of array y - i.e. it points to the start of the
+array. Its type is double(*)[4]
+

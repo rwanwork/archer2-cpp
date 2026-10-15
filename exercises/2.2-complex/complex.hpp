@@ -7,7 +7,9 @@ public:
   // Default value is zero
   Complex() = default;
   // Construct purely real complex
+  Complex (double real);
   // Construct from real and imaginary parts
+  Complex (double real, double imag);
 
   // Access components
   double real() const;

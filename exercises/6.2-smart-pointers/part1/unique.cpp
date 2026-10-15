@@ -16,11 +16,14 @@ int main()
     << "------------" << std::endl;
 
   // TODO: Define a unique pointer of A called p1
+  auto p1 = std::make_unique<A> ();
 
   // TODO: Call printA()
+  p1 -> printA ();
+  (*p1).printA ();
 
   // TODO: Print address of the containing pointer
-
+  std::cout << "p1: " << p1.get () << std::endl;
 
   std::cout << std::endl
     << "------------" << std::endl
@@ -28,10 +31,14 @@ int main()
     << "------------" << std::endl;
 
   // TODO: Make a new unique pointer of A called p2
+  auto p2 = std::make_unique<A> ();
 
   // TODO: Call printA()
+  p2 -> printA ();
 
   // TODO: Print the addresses of p1 and p2
+  std::cout << "p1: " << p1.get () << std::endl;
+  std::cout << "p2: " << p2.get () << std::endl;
 
 
   std::cout << std::endl
@@ -41,10 +48,14 @@ int main()
 
   // TODO: Set p2 equal to p1
   // What happens when you compile this?
+  // p2 = p1;
 
   // TODO: Use move to move p1 into p2 instead, what happens?
+  p2 = std::move (p1);
 
   // TODO: Print the addresses of p1 and p2
+  std::cout << "p1: " << p1.get () << std::endl;
+  std::cout << "p2: " << p2.get () << std::endl;
 
   return 0;
 }

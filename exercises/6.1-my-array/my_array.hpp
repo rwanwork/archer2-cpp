@@ -22,7 +22,7 @@ public:
   my_array() = default;
 
   // Constructor
-  explicit my_array(std::string name, unsigned n) {
+  explicit my_array(std::string name, unsigned n) : name (name), size (n), data (new double[size]) {
     log("Constructing");
     // TODO: Implement constructor
   }
@@ -31,38 +31,52 @@ public:
   ~my_array() {
     log("Destroying");
     // TODO: Implement destructor
+    delete[] data;
   }
 
 /* PART 2 */
 
-/* UNCOMMENT TO COMPLETE PART 2
+/* UNCOMMENT TO COMPLETE PART 2  */
 
   // Copy constructor
   // NOTE: Name should copy from other, but append "_cp"
-  my_array(my_array const& other) {
+  my_array(my_array const& other) : name (other.name + "_cp"), size (other.size), data (new double[other.size]) {
     log("Copy constructing");
     // TODO: Implement copy constructor
+    for (unsigned int i; i < other.size; ++i) {
+      data[i] = other.data[i];
+    }
   }
 
   // Copy assignment operator
   // NOTE: Name should not change
   my_array& operator=(my_array const& other) {
     log("Destroying");
+    delete[] data;
+    size = other.size;
+    data = new double[size];
     // TODO: Implement copy assignment operator
     log("Copy assigning");
+    for (unsigned int i; i < other.size; ++i) {
+      data[i] = other.data[i];
+    }
+    return *this;
   }
 
-REMOVE THIS LINE TO COMPLETE PART 2 */
+/* REMOVE THIS LINE TO COMPLETE PART 2 */
 
 /* PART 3 */
 
-/* UNCOMMENT TO COMPLETE PART 3
+/* UNCOMMENT TO COMPLETE PART 3 */
 
   // Move constructor
   // NOTE: Name should copy from other, but append "_mv"
-  my_array(my_array&& other) noexcept {
+  my_array(my_array&& other) noexcept : name (other.name + "_mv"), size (other.size), data (other.data) {
     log("Move construct");
     // TODO: Implement move constructor
+    // other.name = "";
+    other.size = 0;
+    other.data = nullptr;
   }
 
   // Move assignment operator
@@ -70,9 +84,14 @@ REMOVE THIS LINE TO COMPLETE PART 2 */
   my_array& operator=(my_array&& other) noexcept {
     // TODO: Implement move assignment operator
     log("Move assign");
+    // std::swap (name, other.name);
+    //name = other.name;
+    std::swap (size, other.size);
+    std::swap (data, other.data);
+    return *this;
   }
 
-REMOVE THIS LINE TO COMPLETE PART 3 */
+/* REMOVE THIS LINE TO COMPLETE PART 3 */
 
 /* END */
 

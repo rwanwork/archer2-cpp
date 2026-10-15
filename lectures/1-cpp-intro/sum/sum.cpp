@@ -23,8 +23,8 @@ int main(void) {
     std::cout << sum(i1, u42) << std::endl;
     std::cout << sum(d2, d1) << std::endl;
     std::cout << sum(d2, 1e6) << std::endl;
-    std::cout << sum(d2, i1) << std::endl;
-    std::cout << sum(name, file) << std::endl;
+    //  std::cout << sum(d2, i1) << std::endl;
+    //    std::cout << sum(name, file) << std::endl;
 
     return 0;
 }
