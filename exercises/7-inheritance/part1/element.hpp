@@ -11,7 +11,7 @@
 class Element {
 
   // TODO: Add access specifiers. Should the members of this class be public, private, or protected?
-
+protected:
   std::vector<Vertex> vertices;
 
   /**
@@ -21,6 +21,7 @@ class Element {
    */
   Element(std::vector<Vertex> vertices) : vertices(vertices) {}
 
+public:
   /**
    * Get the number of vertices in the element.
    *
@@ -58,13 +59,22 @@ class Element {
  * 
  * TODO: Implement a 2D element class that inherits from Element.
  */
-class Element2D {
+class Element2D : public Element {
 
   // TODO: Add any necessary constructor(s). Should these be public, private, or protected?
+public:
+  Element2D (std::vector<Vertex> vertices) : Element (vertices) {}
 
   // TODO: Override the getNumDims() method to return 2.
+public:
+  int getNumDims() const {
+    return 2;
+  }
 
   // TODO: Add a method to compute the area of the 2D element that derived classes can override. It should return a double.
+  double area () const {
+    return (0);
+  }
 };
 
 
@@ -73,15 +83,27 @@ class Element2D {
  * 
  * TODO: Implement a 3D element class that inherits from Element.
  */
-class Element3D {
+class Element3D : public Element {
 
   // TODO: Add any necessary constructor(s). Should these be public, private, or protected?
+public:
+  Element3D (std::vector<Vertex> vertices) : Element (vertices) {}
 
   // TODO: Override the getNumDims() method to return 3.
+public:
+  int getNumDims() const {
+    return 3;
+  }
 
   // TODO: Add a method to compute the surface area of the 3D element that derived classes can override. It should return a double.
+  double surfaceArea () const {
+    return (0);
+  }
 
   // TODO: Add a method to compute the volume of the 3D element that derived classes can override. It should return a double.
+  double volume () const {
+    return (0);
+  }
 };
 
 #endif

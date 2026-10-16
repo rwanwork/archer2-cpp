@@ -13,11 +13,16 @@
  * 
  * TODO: Implement the Triangle class that inherits from Element2D and provides implementations for the getNumVertices() and area() methods.
  */
-class Triangle {
+class Triangle : public Element2D {
 
+public:
   // TODO: Construct a triangle from three vertices.
+  Triangle (Vertex v1, Vertex v2, Vertex v3) : Element2D ({v1, v2, v3}) {};
 
   // TODO: Implement the getNumVertices() method to return the number of vertices in the triangle (i.e. 3).
+  int getNumVertices () const {
+    return vertices.size ();
+  }
 
   // TODO: Implement the area() method to return the area of the triangle.
   //
@@ -26,6 +31,11 @@ class Triangle {
   // |AB x AC| / 2.0
   //
   // where AB and AC are vectors from the first vertex to the second and third vertices, respectively.
+  double area () const {
+    Vector AB {vertices[0], vertices[1]};
+    Vector AC {vertices[0], vertices[2]};
+    return AB.cross(AC).magnitude () / 2.0;
+  }
 };
 
 #endif

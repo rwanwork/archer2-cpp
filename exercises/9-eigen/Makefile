@@ -1,7 +1,7 @@
 CXX=clang++
 CXX=icpc
 CXX=g++
-CPPFLAGS=-O2 -std=c++11
+CPPFLAGS=-O2 -std=c++11 -I /usr/include/eigen3/
 
 all: explicit implicit sparse
 

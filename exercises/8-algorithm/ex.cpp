@@ -26,8 +26,10 @@ int main(int argc, char* argv[]) {
   auto gen = []() { return std::rand() % 100; };
 
   // Your code here....
+  // std::generate (nums.begin (), nums.end (), gen);
 
   // Now, sort nums.
+  std::sort (nums.begin (), nums.end());
 
   // Your code here....
 
@@ -37,11 +39,16 @@ int main(int argc, char* argv[]) {
   // algorithm function
 
   // Your code here....
+  std::sort (nums.begin (), nums.end(), std::greater<int>());
 
   std::cout << "Reverse sorted nums (a): ";
   print_vec(nums);
 
+  //  Back to original order
+  std::sort (nums.begin (), nums.end());
+
   // Your code here....
+  std::reverse (nums.begin (), nums.end());
 
   std::cout << "Reverse sorted nums (b): ";
   print_vec(nums);
@@ -57,8 +64,9 @@ int main(int argc, char* argv[]) {
   auto fibs = std::vector<int>(47);
 
   // Your code here....
-
-
+  fibs[0] = 0;
+  fibs[1] = 1;
+  std::transform (fibs.begin (), fibs.end () - 2, fibs.begin () + 1, fibs.begin () + 2, std::plus<int>());
   print_vec(fibs);
 
   // Next, get all that are less than or equal to 4 million, and store them in
@@ -67,6 +75,7 @@ int main(int argc, char* argv[]) {
   auto fibs_less = std::vector<int>();
 
   // Your code here....
+  std::copy_if (fibs.begin (), fibs.end (), std::back_inserter (fibs_less), [](int x) { return x <= 4000000; });
 
   std::cout << "fibs <= 4000000: ";
   print_vec(fibs_less);
@@ -75,14 +84,14 @@ int main(int argc, char* argv[]) {
   auto evens = std::vector<int>();
 
   // Your code here....
-
+  std::copy_if (fibs_less.begin (), fibs_less.end (), std::back_inserter (evens), [](int x) { return !(x%2); });
 
   std::cout << "Evens: ";
   print_vec(evens);
 
   // Finally, let's sum them (hint: std::accumulate)
 
-  int sum = 0;
+  int sum = std::accumulate (evens.begin(), evens.end(), 0);
 
   std::cout << "Sum of even fibonacci numbers not greater than 4 million: "
             << sum << std::endl;
